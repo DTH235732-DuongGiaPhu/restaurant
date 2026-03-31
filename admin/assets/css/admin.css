@@ -1,0 +1,256 @@
+/* =============================================================
+   ADMIN PANEL CSS — Saigon Bistro
+   ============================================================= */
+:root {
+  --bg-primary:   #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card:      #141414;
+  --border:       #222;
+  --gold:         #c9a96e;
+  --gold-light:   #e0c590;
+  --cream:        #f0e8db;
+  --text:         #d4ccc3;
+  --text-muted:   #777;
+  --green:        #52b788;
+  --red:          #e05252;
+  --red-soft:     #c47070;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Montserrat', sans-serif;
+  --radius:       10px;
+  --sidebar-w:    240px;
+  --topbar-h:     60px;
+  --transition:   0.25s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-primary); color: var(--text); font-family: var(--font-body); font-size: 14px; display: flex; min-height: 100vh; overflow-x: hidden; }
+a { color: var(--gold); text-decoration: none; }
+input, select, textarea { font-family: var(--font-body); }
+img { max-width: 100%; }
+.gold { color: var(--gold) !important; }
+
+/* ── SIDEBAR ─────────────────────────────────────────────────── */
+.admin-sidebar {
+  width: var(--sidebar-w); min-height: 100vh;
+  background: #0d0d0d; border-right: 1px solid var(--border);
+  position: fixed; left: 0; top: 0; z-index: 200;
+  display: flex; flex-direction: column;
+  transition: transform var(--transition);
+  overflow-y: auto;
+}
+.sidebar-logo {
+  padding: 20px 20px 16px;
+  font-family: var(--font-display); font-size: 1.4rem; color: var(--cream);
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo em { color: var(--gold); font-style: normal; }
+.sidebar-user {
+  padding: 16px 20px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.su-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold); color: #000; font-weight: 700; font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.su-name { color: var(--cream); font-size: 13px; font-weight: 600; }
+.su-role { color: var(--text-muted); font-size: 11px; }
+.su-role i { color: var(--gold); margin-right: 3px; }
+
+.sidebar-nav { padding: 16px 12px; flex: 1; }
+.nav-group-label {
+  color: var(--text-muted); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 12px 10px 6px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 8px;
+  color: var(--text-muted); font-size: 13px; font-weight: 500;
+  transition: var(--transition); position: relative; margin-bottom: 2px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+.nav-item.active { background: rgba(201,169,110,0.1); color: var(--gold); }
+.nav-item.active i { color: var(--gold); }
+.nav-item i { font-size: 1rem; width: 18px; text-align: center; }
+.nav-badge {
+  background: var(--red); color: #fff; font-size: 10px; font-weight: 700;
+  min-width: 18px; height: 18px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: auto; padding: 0 5px;
+}
+
+/* ── MAIN ────────────────────────────────────────────────────── */
+.admin-main {
+  margin-left: var(--sidebar-w); flex: 1;
+  display: flex; flex-direction: column; min-height: 100vh;
+}
+
+/* ── TOPBAR ──────────────────────────────────────────────────── */
+.admin-topbar {
+  height: var(--topbar-h); background: #0d0d0d;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 24px; gap: 16px;
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar-toggle {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 1.3rem; cursor: pointer; display: none;
+}
+.topbar-title { color: var(--cream); font-size: 15px; font-weight: 600; }
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.topbar-notif { position: relative; color: var(--text-muted); font-size: 1.2rem; }
+.notif-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--red); color: #fff; font-size: 9px; font-weight: 700;
+  width: 16px; height: 16px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── CONTENT ─────────────────────────────────────────────────── */
+.admin-content { padding: 28px; flex: 1; }
+.content-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+.content-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--cream); font-weight: 300; }
+.content-subtitle { color: var(--text-muted); font-size: 13px; }
+
+/* ── STAT CARDS ──────────────────────────────────────────────── */
+.stat-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  display: flex; align-items: center; gap: 16px;
+  transition: var(--transition);
+}
+.stat-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+}
+.stat-val { font-family: var(--font-display); font-size: 1.8rem; color: var(--cream); font-weight: 700; line-height: 1; }
+.stat-label { color: var(--text-muted); font-size: 12px; margin-top: 3px; }
+
+/* ── ADMIN CARD ──────────────────────────────────────────────── */
+.admin-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.admin-card-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.admin-card-header h6 { color: var(--cream); font-size: 14px; font-weight: 600; margin: 0; }
+.card-link { color: var(--gold); font-size: 12px; }
+.admin-card-body { padding: 20px; }
+.admin-card-body.p-0 { padding: 0; }
+
+/* ── QUICK STATS ─────────────────────────────────────────────── */
+.quick-stat-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text-muted);
+}
+.qs-val { color: var(--cream); font-weight: 600; }
+
+/* ── ADMIN TABLE ─────────────────────────────────────────────── */
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th {
+  padding: 12px 16px; color: var(--text-muted);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap;
+}
+.admin-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.admin-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.admin-table tbody tr:last-child td { border-bottom: none; }
+
+/* ── ADMIN BUTTONS ───────────────────────────────────────────── */
+.admin-btn {
+  background: var(--gold); color: #000;
+  border: none; border-radius: 6px; padding: 9px 18px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  transition: var(--transition);
+}
+.admin-btn:hover { background: var(--gold-light); }
+.admin-btn-sm {
+  background: rgba(201,169,110,0.1); color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 6px; padding: 5px 12px; font-size: 11px; font-weight: 600;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+  transition: var(--transition);
+}
+.admin-btn-sm:hover { background: rgba(201,169,110,0.2); }
+.admin-btn-danger {
+  background: rgba(224,82,82,0.1); color: var(--red);
+  border: 1px solid rgba(224,82,82,0.3);
+  border-radius: 6px; padding: 5px 12px; font-size: 11px; font-weight: 600;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+  transition: var(--transition);
+}
+.admin-btn-danger:hover { background: rgba(224,82,82,0.2); }
+
+/* ── FORM CONTROLS ───────────────────────────────────────────── */
+.admin-form-group { margin-bottom: 18px; }
+.admin-label { color: var(--text-muted); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+.admin-input {
+  width: 100%; background: var(--bg-secondary);
+  border: 1px solid var(--border); color: var(--text);
+  font-family: var(--font-body); font-size: 13px;
+  padding: 10px 14px; border-radius: 8px; outline: none;
+  transition: var(--transition);
+}
+.admin-input:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,169,110,0.1); }
+.admin-input::placeholder { color: var(--text-muted); }
+select.admin-input option { background: var(--bg-card); }
+textarea.admin-input { resize: vertical; min-height: 90px; }
+
+/* ── STATUS BADGES (shared) ──────────────────────────────────── */
+.status-badge { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px; }
+.status-pending    { background:rgba(201,169,110,0.1); color:var(--gold); }
+.status-confirmed  { background:rgba(82,183,136,0.1);  color:#52b788; }
+.status-cooking    { background:rgba(255,165,0,0.1);   color:orange; }
+.status-delivering { background:rgba(100,160,255,0.1); color:#64a0ff; }
+.status-done       { background:rgba(82,183,136,0.15); color:#52b788; border:1px solid rgba(82,183,136,0.3); }
+.status-cancelled  { background:rgba(224,82,82,0.1);   color:var(--red); }
+
+/* ── PAGINATION ──────────────────────────────────────────────── */
+.admin-pagination { display:flex;gap:6px;justify-content:center;margin-top:20px;flex-wrap:wrap; }
+.page-link-custom {
+  width:34px;height:34px;border-radius:6px;
+  background:var(--bg-card);border:1px solid var(--border);
+  color:var(--text-muted);font-size:12px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:var(--transition);
+}
+.page-link-custom:hover,.page-link-custom.active { background:var(--gold);color:#000;border-color:var(--gold); }
+
+/* ── OVERLAY (mobile sidebar) ────────────────────────────────── */
+.sidebar-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:199; }
+
+/* ── MODAL ───────────────────────────────────────────────────── */
+.admin-modal {
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+}
+.admin-modal.show { display:flex; }
+.admin-modal-content {
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);width:90%;max-width:520px;max-height:90vh;overflow-y:auto;
+  animation:modalIn 0.3s ease;
+}
+@keyframes modalIn { from { transform:scale(0.95);opacity:0; } }
+.admin-modal-header { padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center; }
+.admin-modal-header h6 { color:var(--cream);font-size:15px;font-weight:600;margin:0; }
+.admin-modal-close { background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:1.1rem; }
+.admin-modal-body { padding:24px; }
+.admin-modal-footer { padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.open { transform: translateX(0); }
+  .sidebar-overlay { display: block; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .sidebar-overlay.show { opacity: 1; pointer-events: all; }
+  .admin-main { margin-left: 0; }
+  .topbar-toggle { display: block; }
+  .admin-content { padding: 16px; }
+}
